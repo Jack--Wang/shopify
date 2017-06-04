@@ -1,4 +1,6 @@
 {
+  "name": "groundrule/shopify",
+  "description": "...",
   "autoload": {
     "psr-4": {
       "GroundRule\\Shopify\\": "src/"
