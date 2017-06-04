@@ -10,7 +10,7 @@ class Shopify
 
     private $accessToken;
 
-    public function __construct($myshopifyDomain, $accessToken)
+    public function __construct($myshopifyDomain, $accessToken = null)
     {
         $this->myshopifyDomain = $myshopifyDomain;
         $this->accessToken = $accessToken;
