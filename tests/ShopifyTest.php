@@ -1,6 +1,6 @@
 <?php
 
-use GroundRule\Shopify\Shopify;
+use NickyWoolf\Shopify\Shopify;
 use PHPUnit\Framework\TestCase;
 
 class ShopifyTest extends TestCase

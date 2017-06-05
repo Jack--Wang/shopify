@@ -1,6 +1,6 @@
 ```php
 
-$shopify = new GroundRule\Shopify\Shopify('example.myshopify.com', 'VALID-ACCESS-TOKEN');
+$shopify = new NickyWoolf\Shopify\Shopify('example.myshopify.com', 'VALID-ACCESS-TOKEN');
 
 $product = $shopify->get('products/1234567890.json')->json();
 

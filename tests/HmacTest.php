@@ -1,6 +1,6 @@
 <?php
 
-use GroundRule\Shopify\Hmac;
+use NickyWoolf\Shopify\Hmac;
 use PHPUnit\Framework\TestCase;
 
 class HmacTest extends TestCase

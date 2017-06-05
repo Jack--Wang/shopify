@@ -1,6 +1,6 @@
 <?php
 
-namespace GroundRule\Shopify;
+namespace NickyWoolf\Shopify;
 
 class ShopifyResponse
 {

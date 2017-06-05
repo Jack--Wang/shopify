@@ -1,9 +1,9 @@
 {
-  "name": "groundrule/shopify",
+  "name": "nickywoolf/shopify",
   "description": "...",
   "autoload": {
     "psr-4": {
-      "GroundRule\\Shopify\\": "src/"
+      "NickyWoolf\\Shopify\\": "src/"
     }
   },
   "require": {
