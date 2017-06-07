@@ -1,14 +1,27 @@
+Redirect the user to Shopify to get permission to access their shop's data.
+
 ```php
 
 $shopify = new NickyWoolf\Shopify\Shopify('example.myshopify.com');
 
-$authorizeUrl = $shopify->authorize('client_id', 'scope', 'redirect_uri', 'nonce');
+$authorizeUrl = $shopify->authorize('client_id', 'scope', 'redirect_uri');
 
 header("Location: {$authorizationUrl}");
 
 ```
 
+After the user allows access Shopify redirects them back to your whitelisted "redirect_uri." You can whitelist urls
+in the app settings in your partner account.
+
+Perform checks to make sure request came from Shopify. Finally, request an access token for the user.
+
 ```php
+
+$hmac = new Nickywoolf\Shopify\Hmac('your_client_secret');
+
+if (! $hmac->trustRequest($_GET)) {
+    // abort!
+}
 
 $shopify = new NickyWoolf\Shopify\Shopify('example.myshopify.com');
 
@@ -31,6 +44,8 @@ $response->json();
 
 ```
 
+Make authorized requests with a valid access token.
+
 
 ```php
 
@@ -51,6 +66,8 @@ $product = $shopify->get('products/1234567890.json')->json();
 ]
 
 ```
+
+Example of extracting the resource from the response.
 
 ```php
 
