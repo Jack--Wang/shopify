@@ -1,13 +1,13 @@
 {
   "name": "nickywoolf/shopify",
-  "description": "...",
+  "description": "Shopify API Client",
   "autoload": {
     "psr-4": {
       "NickyWoolf\\Shopify\\": "src/"
     }
   },
   "require": {
-    "kitetail/zttp": "dev-master"
+    "kitetail/zttp": "^0.3.0"
   },
   "require-dev": {
     "phpunit/phpunit": "^6.2"
