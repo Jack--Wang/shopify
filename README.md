@@ -17,9 +17,9 @@ Perform checks to make sure request came from Shopify. Finally, request an acces
 
 ```php
 
-$hmac = new NickyWoolf\Shopify\Hmac('your_client_secret');
+$request= new NickyWoolf\Shopify\Request('your_client_secret');
 
-if (! $hmac->trustRequest($_GET)) {
+if (! $request->verify($_GET)) {
     // abort!
 }
 
