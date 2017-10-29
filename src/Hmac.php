@@ -2,7 +2,7 @@
 
 namespace NickyWoolf\Shopify;
 
-class Hmac
+abstract class Hmac
 {
     private $secret;
 
@@ -11,18 +11,13 @@ class Hmac
         $this->secret = $secret;
     }
 
-    public function trustWebhook($header, $body)
+    protected function hash($data, $raw = false)
     {
-        return $header === base64_encode($this->hashRaw($body));
+        return hash_hmac('sha256', $data, $this->secret, $raw);
     }
 
     protected function hashRaw($data)
     {
         return $this->hash($data, true);
-    }
-
-    protected function hash($data, $raw = false)
-    {
-        return hash_hmac('sha256', $data, $this->secret, $raw);
     }
 }
