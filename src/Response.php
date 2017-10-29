@@ -2,7 +2,7 @@
 
 namespace NickyWoolf\Shopify;
 
-class ShopifyResponse
+class Response
 {
     private $response;
 

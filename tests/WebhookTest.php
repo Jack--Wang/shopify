@@ -1,9 +1,9 @@
 <?php
 
-use NickyWoolf\Shopify\ShopifyWebhook;
+use NickyWoolf\Shopify\Webhook;
 use PHPUnit\Framework\TestCase;
 
-class ShopifyWebhookTest extends TestCase
+class WebhookTest extends TestCase
 {
     /** @test */
     function verify_webhook_signed_by_shopify()
@@ -17,7 +17,7 @@ class ShopifyWebhookTest extends TestCase
         ]);
         $header = base64_encode(hash_hmac('sha256', $body, $secret, true));
 
-        $webhook = new ShopifyWebhook($secret);
+        $webhook = new Webhook($secret);
 
         $this->assertTrue($webhook->verify($header, $body));
     }
@@ -35,7 +35,7 @@ class ShopifyWebhookTest extends TestCase
         ]);
         $header = base64_encode(hash_hmac('sha256', $body, $secret, true));
 
-        $webhook = new ShopifyWebhook($differentSecret);
+        $webhook = new Webhook($differentSecret);
 
         $this->assertFalse($webhook->verify($header, $body));
     }

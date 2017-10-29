@@ -2,7 +2,7 @@
 
 namespace  NickyWoolf\Shopify;
 
-class ShopifyRequest extends Hmac
+class Request extends Hmac
 {
     public function verify($data)
     {

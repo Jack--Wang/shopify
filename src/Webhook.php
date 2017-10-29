@@ -2,7 +2,7 @@
 
 namespace NickyWoolf\Shopify;
 
-class ShopifyWebhook extends Hmac
+class Webhook extends Hmac
 {
     public function verify($header, $body)
     {

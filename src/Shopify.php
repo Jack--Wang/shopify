@@ -43,7 +43,7 @@ class Shopify
 
     public function send($method, $url, $params = [])
     {
-        return new ShopifyResponse($this->client()->{$method}($this->endpoint($url), $params));
+        return new Response($this->client()->{$method}($this->endpoint($url), $params));
     }
 
     public function setAccessToken($accessToken)

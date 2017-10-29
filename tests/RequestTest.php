@@ -1,9 +1,9 @@
 <?php
 
-use NickyWoolf\Shopify\ShopifyRequest;
+use NickyWoolf\Shopify\Request;
 use PHPUnit\Framework\TestCase;
 
-class ShopifyRequestTest extends TestCase
+class RequestTest extends TestCase
 {
     /** @test */
     function verify_request_signed_by_shopify()
@@ -19,7 +19,7 @@ class ShopifyRequestTest extends TestCase
             ),
         ];
 
-        $request = new ShopifyRequest($secret);
+        $request = new Request($secret);
 
         $this->assertTrue($request->verify($requestData));
     }
@@ -35,7 +35,7 @@ class ShopifyRequestTest extends TestCase
             'shop' => 'example.myshopify.com',
         ];
 
-        $request = new ShopifyRequest($secret);
+        $request = new Request($secret);
 
         $this->assertFalse($request->verify($requestData));
     }
@@ -55,7 +55,7 @@ class ShopifyRequestTest extends TestCase
             ),
         ];
 
-        $request = new ShopifyRequest($secret);
+        $request = new Request($secret);
 
         $this->assertFalse($request->verify($requestData));
     }
