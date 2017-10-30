@@ -10,6 +10,11 @@ class Request extends Hmac
             return false;
         }
 
+        return $data['hmac'] === $this->sign($data);
+    }
+
+    public function sign($data)
+    {
         $filtered = array_filter($data, function ($key) {
             return ! in_array($key, ['hmac', 'signature']);
         }, ARRAY_FILTER_USE_KEY);
@@ -20,6 +25,6 @@ class Request extends Hmac
 
         sort($mapped);
 
-        return $data['hmac'] === $this->hash(implode('&', $mapped));
+        return $this->hash(implode('&', $mapped));
     }
 }

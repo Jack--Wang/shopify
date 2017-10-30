@@ -59,4 +59,37 @@ class RequestTest extends TestCase
 
         $this->assertFalse($request->verify($requestData));
     }
+
+    /** @test */
+    function signs_request()
+    {
+        $secret = 'SHOPIFY-CLIENT-SECRET';
+        $requestData = [
+            'timestamp' => 1234567890,
+            'local' => 'en',
+            'protocol' => 'https://',
+            'shop' => 'example.myshopify.com',
+        ];
+        $request = new Request($secret);
+
+        $requestData['hmac'] = $request->sign($requestData);
+
+        $this->assertTrue($request->verify($requestData));
+    }
+
+    /** @test */
+    function signed_request_not_verified_with_different_secrets()
+    {
+        $requestData = [
+            'timestamp' => 1234567890,
+            'local' => 'en',
+            'protocol' => 'https://',
+            'shop' => 'example.myshopify.com',
+        ];
+        $request = new Request('SHOPIFY-CLIENT-SECRET');
+
+        $requestData['hmac'] = $request->sign($requestData);
+
+        $this->assertFalse((new Request('INVALID-SECRET'))->verify($requestData));
+    }
 }
