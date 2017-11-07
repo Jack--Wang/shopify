@@ -4,13 +4,22 @@ namespace NickyWoolf\Shopify;
 
 class Calls
 {
-    protected $calls;
+    protected static $shops = [];
 
-    protected $limit;
+    protected $shop;
 
-    public function __construct($callLimitHeader)
+    public static function forShop($shop)
     {
-        list($this->calls, $this->limit) = explode('/', $callLimitHeader);
+        return new static($shop);
+    }
+
+    public function __construct($shop)
+    {
+        $this->shop = $shop;
+
+        if (! $this->getShopCalls()) {
+            $this->setShopCalls(0, 0);
+        }
     }
 
     public function left()
@@ -20,16 +29,40 @@ class Calls
 
     public function limit()
     {
-        return $this->limit;
+        return $this->getShopCalls()->limit;
     }
 
     public function made()
     {
-        return $this->calls;
+        return $this->getShopCalls()->calls;
     }
 
     public function maxed()
     {
         return $this->left() <= 0;
+    }
+
+    public function setHeader($callLimitHeader)
+    {
+        list($calls, $limit) = explode('/', $callLimitHeader);
+
+        $this->setShopCalls($calls, $limit);
+
+        return $this;
+    }
+
+    protected function setShopCalls($calls, $limit)
+    {
+        static::$shops[$this->shop] = (object) [
+            'calls' => $calls,
+            'limit' => $limit,
+        ];
+
+        return $this;
+    }
+
+    protected function getShopCalls()
+    {
+        return isset(static::$shops[$this->shop]) ? static::$shops[$this->shop] : null;
     }
 }
