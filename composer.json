@@ -1,6 +1,6 @@
 {
   "name": "nickywoolf/shopify",
-  "description": "Shopify API Client",
+  "description": "A simple Shopify API client",
   "autoload": {
     "psr-4": {
       "NickyWoolf\\Shopify\\": "src/"
